@@ -1,4 +1,15 @@
+magazyn = open("magazyn.txt", "w+")
+magazyn_read = open("magazyn.txt", "r+")
+saldo = open("saldo.txt", "w+")
+saldo_read = open("saldo.txt", "r+")
+historia = open("historia.txt", "w+")
+historia_read = open("historia.txt", "r+")
+
+
+
+
 ALLOWED_COMMAND = ["account balance", "sale", "purchase", "account", "stop"]
+
 warehouse = {"mountain bike": 3,
              "sport shoes": 5,
              "ball": 4}
@@ -9,7 +20,14 @@ history_sale = {}
 history_purchase = {}
 history = []
 
+
 while True:
+    magazyn.write(str(f"{warehouse}\n"))
+    saldo.write(str(f"{amount_of_money}\n"))
+    historia.write(str(f"Historia: {history}\n\n"
+                       f"Historia zakupów: {history_purchase}\n\n"
+                       f"Historia sprzedaży: {history_sale}\n\n"))
+
     print("\nKomendy: account balance, sale, purchase, account, stop.")
     print("\nUwaga! Komenda: stop wyłącza program!")
     comm = input("Komenda: ")
@@ -35,7 +53,7 @@ while True:
                     summary_sale = [(f"Sprzedano {numbs_elements}: {element_sale} w cenie: {price} zł")]
                     history += summary_sale
                     print(summary_sale)
-                if not warehouse[element_sale] > 0:
+                if not warehouse[element_sale] <= 0:
                     print("Brak wystarczającej ilości towaru!")
                     print(warehouse)
                     continue
