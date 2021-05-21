@@ -1,11 +1,9 @@
-magazyn = open("magazyn.txt", "w+")
+magazyn = open("magazyn.txt", "a+")
 magazyn_read = open("magazyn.txt", "r+")
-saldo = open("saldo.txt", "w+")
+saldo = open("saldo.txt", "a+")
 saldo_read = open("saldo.txt", "r+")
-historia = open("historia.txt", "w+")
+historia = open("historia.txt", "a+")
 historia_read = open("historia.txt", "r+")
-
-
 
 
 ALLOWED_COMMAND = ["account balance", "sale", "purchase", "account", "stop"]
@@ -19,7 +17,20 @@ amount_of_money = 1000
 history_sale = {}
 history_purchase = {}
 history = []
-
+"""
+program = [f"download and start", "start"]
+for i in program:
+    task = input("Program: ")
+    if task == "download and start":
+        warehouse = magazyn_read.read()
+        amount_of_money = saldo_read.read()
+        history = historia_read.read()
+"""
+linie = len(open("magazyn.txt", "r").readlines())
+import linecache
+wiersz = linecache.getline ("magazyn.txt" , linie)
+for m in wiersz:
+    print(m)
 
 while True:
     magazyn.write(str(f"{warehouse}\n"))
@@ -32,14 +43,14 @@ while True:
     print("\nUwaga! Komenda: stop wyłącza program!")
     comm = input("Komenda: ")
 
-# a) python accountant.py saldo <int wartosc> <str komentarz>
+    # a) python accountant.py saldo <int wartosc> <str komentarz>
     if comm in ALLOWED_COMMAND:
         if comm == ALLOWED_COMMAND[0]:
             print(f"Saldo: {amount_of_money} zł \nHistory:\n{history}")
             print(f"Hisotria sprzedaży: {history_sale}")
             print(f"Historia zakupów {history_purchase}")
 
-# b) python accountant.py sprzedaż <str identyfikator produktu> <int cena> <int liczba sprzedanych>
+    # b) python accountant.py sprzedaż <str identyfikator produktu> <int cena> <int liczba sprzedanych>
         if comm == ALLOWED_COMMAND[1]:
             print(f"Magazyn: {warehouse}")
             element_sale = input("Produkt: ")
@@ -53,7 +64,7 @@ while True:
                     summary_sale = [(f"Sprzedano {numbs_elements}: {element_sale} w cenie: {price} zł")]
                     history += summary_sale
                     print(summary_sale)
-                if not warehouse[element_sale] <= 0:
+                if not warehouse[element_sale] > 0:
                     print("Brak wystarczającej ilości towaru!")
                     print(warehouse)
                     continue
@@ -61,7 +72,7 @@ while True:
                 print("Wprowadź ponownie komendę!")
                 continue
 
-# c) python accountant.py zakup <str identyfikator produktu> <int cena> <int liczba zakupionych>
+    # c) python accountant.py zakup <str identyfikator produktu> <int cena> <int liczba zakupionych>
         if comm == ALLOWED_COMMAND[2]:
             print(warehouse)
             choose_items_to_purchase = input("Zakupiony produkt: ")
@@ -94,7 +105,7 @@ while True:
                 print(summary_purchase)
 
 
-# d) python accountant.py konto
+    # d) python accountant.py konto
         if comm == ALLOWED_COMMAND[3]:
             action = ['Payment of money', 'Money payment']
             print("Wypłata środków (Payment of money) lub wpłata środków(Money payment):")
