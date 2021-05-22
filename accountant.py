@@ -1,15 +1,25 @@
-magazyn = open("magazyn.txt", "w")
+magazyn = open("magazyn.txt", "a+")
 magazyn_read = open("magazyn.txt", "r")
 saldo = open("saldo.txt", "a+")
 saldo_read = open("saldo.txt", "r+")
 historia = open("historia.txt", "a+")
 historia_read = open("historia.txt", "r+")
-
-linie = len(open("magazyn.txt", "r").readlines())
 import linecache
-wiersz = linecache.getline("magazyn.txt", linie)
-for m in wiersz.split():
-    pass # print(m, end='')
+
+#linie = len(open("magazyn.txt", "r+").readlines())
+#wiersz = linecache.getline("magazyn.txt", linie)
+#for m in wiersz.split():
+#    pass # print(m, end='')
+#    linia_ = m
+#    linia_clean = linia_.lstrip('{').rstrip('}').rstrip('\n')
+#    magazyn.write(linia_clean)
+#    print(linia_clean, end="")
+
+    #tab_ = linia_.split(",")
+    #tab_ = [dict(x) for x in tab_]
+    #aom_ = dict(linia_)
+    #print(tab_)
+    #print(aom_)
 
 # saldo do pobrania
 
@@ -25,6 +35,7 @@ for s in wiersz_saldo.split():
 
 
 ALLOWED_COMMAND = ["account balance", "sale", "purchase", "account", "stop"]
+
 warehouse = {"mountain bike": 3,
              "sport shoes": 5,
              "ball": 4}
@@ -44,7 +55,7 @@ while True:
     #        val = str(value)
     #        magazyn.write(f"'{i}: {val}'\n")
 
-    magazyn.write(str(f"{warehouse}\n"))
+    magazyn.write(str(f"{warehouse}\n").lstrip('{').rstrip('}'))
     saldo.write(f"{amount_of_money}\n")
     historia.write(f"Historia: {history}\n"
                        f"Historia zakupów: {history_purchase}\n"
