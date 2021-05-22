@@ -8,8 +8,7 @@ linie = len(open("magazyn.txt", "r").readlines())
 import linecache
 wiersz = linecache.getline("magazyn.txt", linie)
 for m in wiersz.split():
-    print(m, end='')
-
+    pass # print(m, end='')
 # saldo do pobrania
 
 saldo_line = len(open("saldo.txt", "r").readlines())
@@ -34,9 +33,9 @@ history = []
 while True:
     magazyn.write(f"{warehouse}\n")
     saldo.write(f"{amount_of_money}\n")
-    historia.write(f"Historia: {history}\n\n"
-                       f"Historia zakupów: {history_purchase}\n\n"
-                       f"Historia sprzedaży: {history_sale}\n\n")
+    historia.write(f"Historia: {history}\n"
+                       f"Historia zakupów: {history_purchase}\n"
+                       f"Historia sprzedaży: {history_sale}\n")
 
     print("\nKomendy: account balance, sale, purchase, account, stop.")
     print("\nUwaga! Komenda: stop wyłącza program!")
