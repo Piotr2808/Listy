@@ -4,40 +4,39 @@ saldo = open("saldo.txt", "a+")
 saldo_read = open("saldo.txt", "r+")
 historia = open("historia.txt", "a+")
 historia_read = open("historia.txt", "r+")
+linie = len(open("magazyn.txt", "r").readlines())
+import linecache
+wiersz = linecache.getline("magazyn.txt", linie)
+for m in wiersz.split():
+    print(m, end='')
 
+# saldo do pobrania
+
+saldo_line = len(open("saldo.txt", "r").readlines())
+wiersz_saldo = linecache.getline("saldo.txt", saldo_line)
+for s in wiersz_saldo.split():
+    pass # print(f"\n{s}", end='')
+linia = s
+tab = linia.split(",")
+tab = [float(x) for x in tab]
+aom = float(linia)
 
 ALLOWED_COMMAND = ["account balance", "sale", "purchase", "account", "stop"]
-
 warehouse = {"mountain bike": 3,
              "sport shoes": 5,
              "ball": 4}
-
 choose_items = {}
-amount_of_money = 1000
+amount_of_money = aom
 history_sale = {}
 history_purchase = {}
 history = []
-"""
-program = [f"download and start", "start"]
-for i in program:
-    task = input("Program: ")
-    if task == "download and start":
-        warehouse = magazyn_read.read()
-        amount_of_money = saldo_read.read()
-        history = historia_read.read()
-"""
-linie = len(open("magazyn.txt", "r").readlines())
-import linecache
-wiersz = linecache.getline ("magazyn.txt" , linie)
-for m in wiersz:
-    print(m)
 
 while True:
-    magazyn.write(str(f"{warehouse}\n"))
-    saldo.write(str(f"{amount_of_money}\n"))
-    historia.write(str(f"Historia: {history}\n\n"
+    magazyn.write(f"{warehouse}\n")
+    saldo.write(f"{amount_of_money}\n")
+    historia.write(f"Historia: {history}\n\n"
                        f"Historia zakupów: {history_purchase}\n\n"
-                       f"Historia sprzedaży: {history_sale}\n\n"))
+                       f"Historia sprzedaży: {history_sale}\n\n")
 
     print("\nKomendy: account balance, sale, purchase, account, stop.")
     print("\nUwaga! Komenda: stop wyłącza program!")
