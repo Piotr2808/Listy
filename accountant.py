@@ -1,27 +1,25 @@
-magazyn = open("magazyn.txt", "a+")
+# TUTAJ TOWRZE PLIKI DO WCZYTYWANIA I ZAPISU
+
+magazyn = open("magazyn.txt", "w")
 magazyn_read = open("magazyn.txt", "r")
 saldo = open("saldo.txt", "a+")
 saldo_read = open("saldo.txt", "r+")
-historia = open("historia.txt", "a+")
-historia_read = open("historia.txt", "r+")
+historia = open("historia.txt", "w")
+historia_read = open("historia.txt", "r")
+
 import linecache
+# TUTAJ KOMBINUJE Z WCZYTANIEM STR DO DICT ... I COŚ MI SIĘ MIESZA. CHCE TO ZROBIĆ TAK ABY CO DRUGI ELEMENT ZE ZMIENNEJ
+# ,,RZECZ'' PRZYPISYWAŁO MI DO DWÓCH INNY ZMIENNYCH I ZAPISYWAŁO DO SŁOWNIKA. PIERWSZA TO STR OD ' DO ' A DRUGA TO
+# WARTOŚC OD : DO , NA TO WYCHOPDZI. NIE WIEM CZY TAK SIĘ DA. CAŁEGO ZADANIA NIE PRZEROBIE NA TE KLASY BO
+# BO JESZCZE SIĘ W TYM GUBIEM, A  PO PRACY NIE WYSTARCZA MI CZASU ...
 
-#linie = len(open("magazyn.txt", "r+").readlines())
-#wiersz = linecache.getline("magazyn.txt", linie)
-#for m in wiersz.split():
-#    pass # print(m, end='')
-#    linia_ = m
-#    linia_clean = linia_.lstrip('{').rstrip('}').rstrip('\n')
-#    magazyn.write(linia_clean)
-#    print(linia_clean, end="")
+for line in magazyn_read.readline().split('{'):
+    rzecz = line.split('}')[0]
+    for h in rzecz[::2]:
+        e = rzecz.strip("''").lstrip("'")
 
-    #tab_ = linia_.split(",")
-    #tab_ = [dict(x) for x in tab_]
-    #aom_ = dict(linia_)
-    #print(tab_)
-    #print(aom_)
 
-# saldo do pobrania
+# TUTAJ WCZYTUJE SALDO
 
 saldo_line = len(open("saldo.txt", "r").readlines())
 wiersz_saldo = linecache.getline("saldo.txt", saldo_line)
@@ -32,30 +30,30 @@ for s in wiersz_saldo.split():
     tab = [float(x) for x in tab]
     aom = float(linia)
 
-
-
 ALLOWED_COMMAND = ["account balance", "sale", "purchase", "account", "stop"]
 
 warehouse = {"mountain bike": 3,
              "sport shoes": 5,
              "ball": 4}
-
-
 choose_items = {}
 amount_of_money = aom
 history_sale = {}
 history_purchase = {}
 history = []
+to_save = warehouse
+
 
 while True:
-    #war = warehouse
-    #for key, value in war.items():
-    #    if key == dict or float or int:
-    #       i = str(key)
-    #        val = str(value)
-    #        magazyn.write(f"'{i}: {val}'\n")
 
-    magazyn.write(str(f"{warehouse}\n").lstrip('{').rstrip('}'))
+    # PROBLEM MAM TUTAJ. SAM ZAPIS CHYBA OK. NIE POTRAFIE WCZYTAĆ MAGAZYNU DO SŁOWNIKA. SALDO WCZYTUJE MI
+    # O ILE JEST JAKAŚ WARTOŚĆ POCZĄTKOWA JUŻ W .TXT. NP. 1000.
+    # Z HISTORIĄ JESZCZE NIE PRÓBOWAŁEM NIC ROBIĆ POZA SAMYM ZAPISEM.
+    # TO WERSJA KTÓREJ NIE PRZEROBIŁEM NA KLASY. NA KLASY PRZERABIAM SOBIE TO W INNYM PLIKU ALE TO MI JUŻ CAŁKIEM
+    # NIE IDZIE. WIĘC TAK. SALDO ZAPISUJE I WCZYTUJE. MAGAZYN ZAPISUJE ALE PROBLEM MAM Z WCZYTANIEM GO DO SŁOWNIKA
+    # A HISTORII JESZCZE NIE RUSZAŁEM. ONA JEST ZAPISYWANA W 3 MIEJSCACH. HISORIA SPRZEDAŻY, ZAKUPÓW I OGÓLNA.
+    #
+
+    magazyn.write(str(f"{warehouse}\n"))
     saldo.write(f"{amount_of_money}\n")
     historia.write(f"Historia: {history}\n"
                        f"Historia zakupów: {history_purchase}\n"
