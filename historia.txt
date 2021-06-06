@@ -1,9 +1,3 @@
-Historia: []
-Historia zakupów: {}
-Historia sprzeda¿y: {}
-Historia: ['Sprzedano 2: ball w cenie: 19.98 z³']
-Historia zakupów: {}
-Historia sprzeda¿y: {'ball': 2}
-Historia: ['Sprzedano 2: ball w cenie: 19.98 z³', 'Zakupiono 3: sport shoes w cenie: 599.97 z³']
-Historia zakupów: {'sport shoes': 3}
-Historia sprzeda¿y: {'ball': 2}
+Sprzedano 2: shoes w cenie: 39.98 zl
+Zakupiono 2: balon w cenie: 66.0 zl
+Sprzedano 1: balon w cenie: 44.0 zl

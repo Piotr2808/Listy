@@ -1,3 +1,3 @@
-{'mountain bike': 3, 'sport shoes': 5, 'ball': 4}
-{'mountain bike': 3, 'sport shoes': 5, 'ball': 2}
-{'mountain bike': 3, 'sport shoes': 8, 'ball': 2}
+ball,2
+shoes,5
+balon,1
